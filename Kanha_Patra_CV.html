@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanha Patra — Cybersecurity CV</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --bg:        #0d0d0d;
+    --bg2:       #111417;
+    --bg3:       #161b22;
+    --green:     #39ff14;
+    --green-dim: #1a7a08;
+    --green-mid: #22c55e;
+    --cyan:      #00e5ff;
+    --red:       #ff4444;
+    --yellow:    #f0c040;
+    --white:     #e2e8f0;
+    --gray:      #8892a4;
+    --border:    #1e2a1e;
+    --font:      'JetBrains Mono', 'Share Tech Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 12.5px;
+    line-height: 1.55;
+    padding: 32px 40px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* ── SCANLINES overlay ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    border: 1px solid var(--green-dim);
+    background: var(--bg3);
+    padding: 20px 24px 16px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .header::before {
+    content: '┌─[ kanha@cyberrange ]──[ ~/resume ]──[ $(date) ]';
+    display: block;
+    color: var(--green-dim);
+    font-size: 10px;
+    margin-bottom: 12px;
+    letter-spacing: 0.04em;
+  }
+
+  .prompt-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .prompt-line .ps1 { color: var(--green); font-size: 11px; }
+  .prompt-line .cmd { color: var(--cyan); font-size: 11px; }
+
+  .name {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 18px rgba(57,255,20,0.35);
+    margin: 8px 0 4px;
+  }
+
+  .tagline {
+    color: var(--cyan);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .tagline span { color: var(--green-dim); margin: 0 6px; }
+
+  .contact-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 0;
+    font-size: 10.5px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 10px;
+  }
+  .contact-bar .item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 20px;
+  }
+  .contact-bar .item .label { color: var(--yellow); }
+  .contact-bar .item .val { color: var(--white); }
+
+  /* ── SECTION ── */
+  .section { margin-bottom: 22px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .section-header .prompt { color: var(--green); font-size: 11px; white-space: nowrap; }
+  .section-header h2 {
+    color: var(--green);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .section-header .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--green-dim), transparent);
+    margin-left: 6px;
+  }
+
+  /* ── SKILLS TABLE ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+  }
+
+  .skill-row {
+    display: flex;
+    gap: 0;
+    padding: 4px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 11.5px;
+  }
+  .skill-row .sk-label {
+    color: var(--cyan);
+    width: 150px;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+  .skill-row .sk-label::after { content: ':'; color: var(--green-dim); }
+  .skill-row .sk-val { color: var(--gray); }
+  .skill-row .sk-val .tag {
+    color: var(--green);
+    background: rgba(57,255,20,0.07);
+    border: 1px solid var(--green-dim);
+    border-radius: 2px;
+    padding: 0 4px;
+    margin-right: 3px;
+    font-size: 10.5px;
+    display: inline-block;
+  }
+
+  /* ── JOB ENTRY ── */
+  .job { margin-bottom: 14px; padding-left: 0; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-bottom: 5px;
+    background: rgba(57,255,20,0.04);
+    border-left: 2px solid var(--green-dim);
+    padding: 5px 10px;
+  }
+
+  .job-title { color: var(--white); font-weight: 600; font-size: 12px; }
+  .job-company { color: var(--green); font-size: 11.5px; }
+  .job-company .at { color: var(--green-dim); margin: 0 4px; }
+  .job-loc { color: var(--gray); font-size: 10.5px; }
+  .job-dates {
+    color: var(--yellow);
+    font-size: 10.5px;
+    white-space: nowrap;
+    font-style: italic;
+  }
+
+  .bullets { padding-left: 0; list-style: none; }
+  .bullets li {
+    color: var(--gray);
+    font-size: 11.5px;
+    padding: 2px 0 2px 22px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .bullets li::before {
+    content: '$>';
+    position: absolute;
+    left: 0;
+    color: var(--green-dim);
+    font-size: 10px;
+    top: 3px;
+  }
+  .bullets li strong { color: var(--cyan); font-weight: 500; }
+
+  /* ── PROJECTS ── */
+  .project {
+    border: 1px solid var(--border);
+    background: var(--bg2);
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+  .project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .project-name {
+    color: var(--cyan);
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .project-name::before { content: '[*] '; color: var(--green); }
+  .project-status {
+    font-size: 10px;
+    color: var(--green);
+    border: 1px solid var(--green-dim);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+
+  /* ── EDUCATION ── */
+  .edu-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 10px;
+    border-left: 2px solid var(--cyan);
+    background: rgba(0,229,255,0.03);
+    margin-bottom: 6px;
+  }
+  .edu-deg { color: var(--white); font-weight: 600; font-size: 12px; }
+  .edu-inst { color: var(--cyan); font-size: 11px; }
+  .edu-meta { color: var(--gray); font-size: 10.5px; }
+  .edu-grade { color: var(--green); font-size: 11px; white-space: nowrap; }
+
+  /* ── CERTS ── */
+  .cert-line {
+    font-size: 11.5px;
+    color: var(--gray);
+    padding: 4px 0 4px 22px;
+    position: relative;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .cert-line::before {
+    content: '[+]';
+    position: absolute; left: 0;
+    color: var(--green);
+    font-size: 10.5px;
+  }
+  .cert-line strong { color: var(--yellow); }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 28px;
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    color: var(--green-dim);
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #0d0d0d !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 16px 24px; }
+    body::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div class="prompt-line">
+    <span class="ps1">┌──(kanha㉿cyberrange)-[~/resume]</span>
+  </div>
+  <div class="prompt-line">
+    <span class="ps1">└─$</span>
+    <span class="cmd">cat ./identity.txt</span>
+  </div>
+  <div class="name">KANHA PATRA</div>
+  <div class="tagline">
+    Cybersecurity Engineer<span>▸</span>Penetration Tester<span>▸</span>Cyber Range Developer
+  </div>
+  <div class="contact-bar">
+    <div class="item"><span class="label">location</span><span class="val">Puri, Odisha, IN</span></div>
+    <div class="item"><span class="label">phone</span><span class="val">+91 96926 88496</span></div>
+    <div class="item"><span class="label">email</span><span class="val">kanha.p.cybersec@gmail.com</span></div>
+    <div class="item"><span class="label">linkedin</span><span class="val">linkedin.com/in/kanha-patra</span></div>
+  </div>
+</div>
+
+<!-- ══ SKILLS ══ -->
+<div class="section">
+  <div class="section-header">
+    <span class="prompt">$</span>
+    <h2>cat /etc/skills.conf</h2>
+    <div class="line"></div>
+  </div>
+  <div class="skills-grid">
+    <div>
+      <div class="skill-row"><span class="sk-label">Offensive Security</span><span class="sk-val"><span class="tag">VAPT</span><span class="tag">WAPT</span><span class="tag">OWASP</span><span class="tag">XSS</span><span class="tag">SQLi</span><span class="tag">Exploit Dev</span></span></div>
+      <div class="skill-row"><span class="sk-label">Security Tools</span><span class="sk-val"><span class="tag">Burp Suite</span><span class="tag">Metasploit</span><span class="tag">Nmap</span><span class="tag">Nessus</span><span class="tag">Wireshark</span></span></div>
+      <div class="skill-row"><span class="sk-label">Kali Tools</span><span class="sk-val"><span class="tag">enum4linux</span><span class="tag">dnsenum</span><span class="tag">TCPDump</span><span class="tag">Nikto</span><span class="tag">Gobuster</span></span></div>
+      <div class="skill-row"><span class="sk-label">AI & LLM Sec</span><span class="sk-val"><span class="tag">OWASP LLM Top10</span><span class="tag">Prompt Injection</span><span class="tag">PentestGPT</span></span></div>
+      <div class="skill-row"><span class="sk-label">SIEM & Detection</span><span class="sk-val"><span class="tag">Splunk</span><span class="tag">ELK</span><span class="tag">Wazuh</span><span class="tag">Threat Hunting</span></span></div>
+    </div>
+    <div>
+      <div class="skill-row"><span class="sk-label">Programming</span><span class="sk-val"><span class="tag">Go</span><span class="tag">Python</span><span class="tag">Java</span><span class="tag">Bash</span><span class="tag">PowerShell</span><span class="tag">C/C++</span></span></div>
+      <div class="skill-row"><span class="sk-label">Web Dev</span><span class="sk-val"><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">REST APIs</span></span></div>
+      <div class="skill-row"><span class="sk-label">Networking</span><span class="sk-val"><span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">DHCP</span><span class="tag">Active Directory</span><span class="tag">Cisco</span></span></div>
+      <div class="skill-row"><span class="sk-label">Cloud & DevSecOps</span><span class="sk-val"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">CI/CD Sec</span></span></div>
+      <div class="skill-row"><span class="sk-label">Databases</span><span class="sk-val"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">Oracle</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ WORK EXPERIENCE ══ -->
+<div class="section">
+  <div class="section-header">
+    <span class="prompt">$</span>
+    <h2>ls -la /var/experience/work/</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div>
+        <div class="job-title">Cyber Security Developer <span style="color:var(--gray)">·</span> Project Associate</div>
+        <div class="job-company">IIT Bhubaneswar<span class="at">@</span><span style="color:var(--gray)">Grid Controller of India Ltd (Sponsored)</span></div>
+      </div>
+      <div class="job-dates">Dec 2024 – Present</div>
+    </div>
+    <ul class="bullets">
+      <li>Leading design of a <strong>Cyber Range for power grid infrastructure</strong>; building hypervisor-based lab environments for OT/SCADA attack simulation and hands-on security training.</li>
+      <li>Developing <strong>penetration testing scenarios in Go</strong> to emulate real-world threat actors; researching IEC-61850 protocol vulnerabilities and OT attack paths for scenario design.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div>
+        <div class="job-title">Security Operations & Incident Response Analyst</div>
+        <div class="job-company">Karle Infra Pvt. Ltd.<span class="at">@</span><span style="color:var(--gray)">Bangalore</span></div>
+      </div>
+      <div class="job-dates">Feb 2025 – Nov 2025</div>
+    </div>
+    <ul class="bullets">
+      <li>Managed end-to-end <strong>incident response lifecycle</strong> — detection, triage, escalation, root-cause analysis, and post-incident documentation.</li>
+      <li>Administered <strong>access control systems</strong> (Pro-Watch, HUS Client), enforced least-privilege policies, and supported ISO compliance audits and ITIL-based change management.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ INTERNSHIPS ══ -->
+<div class="section">
+  <div class="section-header">
+    <span class="prompt">$</span>
+    <h2>ls -la /var/experience/internships/</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div>
+        <div class="job-title">Cybersecurity Intern</div>
+        <div class="job-company">SecureSphere Foundation<span class="at">@</span><span style="color:var(--gray)">Remote</span></div>
+      </div>
+      <div class="job-dates">Sep 2024 – Present</div>
+    </div>
+    <ul class="bullets">
+      <li>Conducted <strong>VAPT engagements</strong> on web applications and produced structured security assessment reports; delivered community cybersecurity awareness session on phishing and safe browsing.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div>
+        <div class="job-title">Cybersecurity Professional Trainee</div>
+        <div class="job-company">Cyber Allegiance<span class="at">@</span><span style="color:var(--gray)">Hyderabad</span></div>
+      </div>
+      <div class="job-dates">May 2024 – Aug 2024</div>
+    </div>
+    <ul class="bullets">
+      <li>Performed web application penetration testing; identified and exploited <strong>XSS and SQL Injection</strong> vulnerabilities; collaborated with dev teams to remediate security misconfigurations.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div>
+        <div class="job-title">Java Spring Boot Backend Developer Intern</div>
+        <div class="job-company">SequSpace Pvt. Ltd.<span class="at">@</span><span style="color:var(--gray)">Bhubaneswar</span></div>
+      </div>
+      <div class="job-dates">Nov 2023 – Apr 2024</div>
+    </div>
+    <ul class="bullets">
+      <li>Built <strong>microservices-based REST APIs</strong> for the 'Kitchen Farm' platform using Java and Spring Boot; participated in full SDLC from requirements to manual QA.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div>
+        <div class="job-title">Cyber Security & Ethical Hacking Trainee</div>
+        <div class="job-company">1stop.ai<span class="at">@</span><span style="color:var(--gray)">Bhubaneswar</span></div>
+      </div>
+      <div class="job-dates">Aug 2023 – Sep 2023</div>
+    </div>
+    <ul class="bullets">
+      <li>Industrial training in ethical hacking — <strong>server vulnerability exploitation</strong>, enumeration techniques, and security documentation.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <div>
+        <div class="job-title">Software Tester Trainee</div>
+        <div class="job-company">NIIT Foundation (Microsoft-Sponsored)<span class="at">@</span><span style="color:var(--gray)">Bhubaneswar</span></div>
+      </div>
+      <div class="job-dates">Sep 2023 – Dec 2023</div>
+    </div>
+    <ul class="bullets">
+      <li>Hands-on training in <strong>software testing methodologies</strong>, test case design, and application stability validation.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ PROJECTS ══ -->
+<div class="section">
+  <div class="section-header">
+    <span class="prompt">$</span>
+    <h2>ls ~/projects/ --color=always</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="project">
+    <div class="project-top">
+      <span class="project-name">Cyber Range — Power Grid Security</span>
+      <span class="project-status">● ACTIVE</span>
+    </div>
+    <ul class="bullets">
+      <li>Hypervisor-based cyber range simulating <strong>OT/SCADA attack scenarios</strong> on power grid infrastructure using Go; realistic threat emulation modules for security training.</li>
+    </ul>
+  </div>
+
+  <div class="project">
+    <div class="project-top">
+      <span class="project-name">Server Vulnerability Research & Exploitation Lab</span>
+      <span class="project-status" style="color:var(--cyan);border-color:var(--cyan)">● COMPLETED</span>
+    </div>
+    <ul class="bullets">
+      <li><strong>SMTP</strong> enumeration (Metasploit) · <strong>DNS Zone Transfer</strong> (dnsenum) · <strong>NetBIOS</strong> enumeration (enum4linux) · Wireshark MitM capture · DoS simulation (ICMP/SYN flood) with mitigation analysis.</li>
+    </ul>
+  </div>
+
+  <div class="project">
+    <div class="project-top">
+      <span class="project-name">Automated Recon & Port Scanner Tooling</span>
+      <span class="project-status" style="color:var(--cyan);border-color:var(--cyan)">● COMPLETED</span>
+    </div>
+    <ul class="bullets">
+      <li>Custom <strong>network/port scanner</strong> and OSINT information-gathering tool for penetration testing recon phases; scripted in Python and Bash.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ EDUCATION ══ -->
+<div class="section">
+  <div class="section-header">
+    <span class="prompt">$</span>
+    <h2>cat /etc/education.log</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="edu-row">
+    <div>
+      <div class="edu-deg">Master of Computer Applications (MCA)</div>
+      <div class="edu-inst">Institute of Management & Information Technology, Cuttack</div>
+      <div class="edu-meta">Nov 2022 – May 2024</div>
+    </div>
+    <div class="edu-grade">CGPA: 8.4+</div>
+  </div>
+
+  <div class="edu-row">
+    <div>
+      <div class="edu-deg">B.Sc. Computer Science (Hons)</div>
+      <div class="edu-inst">Mangala Mahavidyalaya, Puri</div>
+      <div class="edu-meta">Jul 2019 – Sep 2022</div>
+    </div>
+    <div class="edu-grade">CGPA: 8.31</div>
+  </div>
+</div>
+
+<!-- ══ CERTS ══ -->
+<div class="section">
+  <div class="section-header">
+    <span class="prompt">$</span>
+    <h2>cat ~/certifications.txt</h2>
+    <div class="line"></div>
+  </div>
+  <div class="cert-line"><strong>TryHackMe</strong> — Active CTF participant · web exploitation, privilege escalation, network security labs</div>
+  <div class="cert-line"><strong>Pursuing</strong> — CEH (EC-Council) · eJPT (eLearnSecurity)</div>
+  <div class="cert-line"><strong>Coursework</strong> — CCNA Networking · AWS/Azure Security Fundamentals · Splunk & Wazuh SIEM</div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<div class="footer">
+  <span>└─[ EOF: resume.txt ]──[ last modified: June 2025 ]</span>
+  <span style="color:var(--green)">exit 0 ✓</span>
+</div>
+
+</body>
+</html>
